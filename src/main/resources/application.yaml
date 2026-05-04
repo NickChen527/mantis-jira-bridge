@@ -1,3 +1,5 @@
 spring:
   application:
     name: mantis-jira-bridge
+  profiles:
+    active: ${ACTIVE_PROFILES:h2}
