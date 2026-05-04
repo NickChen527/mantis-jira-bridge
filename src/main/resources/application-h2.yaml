@@ -4,6 +4,10 @@ spring:
     driver-class-name: org.h2.Driver
     username: sa
     password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
   h2:
     console:
       enabled: true
@@ -11,3 +15,24 @@ spring:
       settings:
         trace: false
         web-allow-others: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+bridge:
+  jira:
+    base-url: ${BRIDGE_JIRA_BASE_URL:https://your-domain.atlassian.net}
+    email: ${BRIDGE_JIRA_EMAIL:}
+    api-token: ${BRIDGE_JIRA_API_TOKEN:}
+    project-key: ${BRIDGE_JIRA_PROJECT_KEY:}
+    default-issue-type: ${BRIDGE_JIRA_ISSUE_TYPE:Task}
+  mantis:
+    base-url: ${BRIDGE_MANTIS_BASE_URL:https://your-mantis-instance}
+    api-token: ${BRIDGE_MANTIS_API_TOKEN:}
+    webhook-secret: ${BRIDGE_MANTIS_WEBHOOK_SECRET:}
+    poll:
+      enabled: ${BRIDGE_MANTIS_POLL_ENABLED:false}
+      interval-ms: ${BRIDGE_MANTIS_POLL_INTERVAL_MS:300000}
